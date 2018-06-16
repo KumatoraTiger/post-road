@@ -49,6 +49,4 @@ test:
 #
 production:
   <<: *default
-  database: post-road_production
-  username: post-road
   password: <%= ENV['POST-ROAD_DATABASE_PASSWORD'] %>
