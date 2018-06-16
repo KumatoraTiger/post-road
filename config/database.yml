@@ -49,4 +49,4 @@ test:
 #
 production:
   <<: *default
-  password: <%= ENV['POST-ROAD_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
