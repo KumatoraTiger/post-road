@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'ridgepole'
 gem 'slim-rails'
+gem 'devise'
 
 group :development, :test do
   gem 'pry-rails'
