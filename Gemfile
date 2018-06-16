@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'ridgepole'
 gem 'slim-rails'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'pry-rails'
