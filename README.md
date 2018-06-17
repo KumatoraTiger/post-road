@@ -6,6 +6,10 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+2.4.4
+
+* Rails version
+5.0.7
 
 * System dependencies
 
@@ -21,4 +25,12 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* Local development
+## url
+example
+http://127.0.0.1:3000
+
+not
+http://localhost:3000
+
+because of twitter login
