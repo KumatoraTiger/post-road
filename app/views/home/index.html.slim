@@ -1,2 +1,6 @@
 h1 Home#index
 p Find me in app/views/home/index.html.slim
+
+- User.omniauth_providers.each do |provider|
+  = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(:user, provider)
+  br
