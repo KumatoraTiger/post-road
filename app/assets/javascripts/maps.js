@@ -1,5 +1,9 @@
-function moveMap(map) {
-  let promise = new Promise((resolve, reject) => {
+$('#generate_map').on('click', function(){
+  moveMap($(this).val());
+});
+
+function moveMap(tweets) {
+  var promise = new Promise((resolve, reject) => {
     resolve();
   });
 
@@ -11,19 +15,34 @@ function moveMap(map) {
       }, 1500);
     })
   }).then(() => {
-    return new Promise((resolve, reject) => {
+    promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         map.setZoom(15);
         resolve();
       },1500);
-    })
-  }).then(() => {
-    setTimeout(() => {
-      map.panTo(new google.maps.LatLng(35.566397,139.658153));
-    },1000);
+    });
   }).catch(() => {
     console.error('Something wrong!')
   })
+
+  $.each(tweets, function(index,tweet){
+    promise.then(() => {
+      promise = new Promise((resolve, reject) => {
+        setTimeout((tweet) => {
+          map.panTo(new google.maps.LatLng());
+          resolve();
+        }, 1000);
+      });
+    }).catch(() => {
+      console.error('Something wrong!')
+    })
+  });
+
+  //   setTimeout(() => {
+  //     map.panTo(new google.maps.LatLng(35.566397,139.658153));
+  //   },1000);
+  // }).catch(() => {
+  // })
   //
   // var contentString = 'test';
   //
