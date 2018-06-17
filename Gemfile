@@ -40,6 +40,7 @@ gem 'slim-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'twitter'
 
 group :development, :test do
   gem 'pry-rails'
