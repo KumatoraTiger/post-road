@@ -3,13 +3,9 @@ class MapsController < ApplicationController
 
   def new
     tweets = twitter_client.user_timeline(count: 1000)
-    @tweets = only_geo_tweets(tweets)
-    # longtitude, latitude = 0, 0
-    # @tweets[0].place.bounding_box.coordinates[0].each do |item|
-    #   longtitude += item[0]
-    #   latitude += item[1]
-    # end
-    # binding.pry
+    geo_tweets = only_geo_tweets(tweets)
+
+    @tweets = to_hash(geo_tweets)
   end
 
   def create
@@ -26,5 +22,32 @@ class MapsController < ApplicationController
     return tweets.select do |tweet|
       tweet.geo.to_s.present? || tweet.place.present?
     end
+  end
+
+  # { geo: {lat: , lng: }, oembed_html: }
+  def to_hash(tweets)
+    array = []
+    tweets.each do |tweet|
+      array.push({geo: create_geo(tweet), oembed_html: get_oembed_html(tweet)})
+    end
+    return array
+  end
+
+  def create_geo(tweet)
+    return geo = tweet.geo if tweet.geo
+
+    longtitude, latitude = 0, 0
+    @tweets[0].place.bounding_box.coordinates[0].each do |item|
+      longtitude += item[0]
+      latitude += item[1]
+    end
+    longtitude = longtitude/4
+    latitude = latitude/4
+    return geo = {lat:latitude, lng:longtitude}
+  end
+
+  def get_oembed_html(tweet)
+    id = @twitter_client.status(tweet.id).id
+    return @twitter_client.oembed(id).html
   end
 end
