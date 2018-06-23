@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'ridgepole'
 gem 'slim-rails'
+gem 'semantic-ui-sass'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
