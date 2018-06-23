@@ -14,4 +14,37 @@
  *= require_self
  */
 
- @import 'semantic-ui';
+@import 'semantic-ui';
+
+@import "./foundation/reset.scss";
+@import "./foundation/setting.scss";
+@import "./pc/application.scss";
+
+body {
+  background-color: #f8f8f8;
+}
+
+.header {
+  height: 56px;
+  width: 100%;
+  padding: 6px 16px;
+  background-color: $keycolor;
+  a {
+    text-decoration: none;
+  }
+  h1{
+    height: 100%;
+    text-align: center;
+    a {
+      height: 100%;
+      img {
+        height: 36px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.content_wrapper {
+  background-color: white;
+}

@@ -1,0 +1,23 @@
+@import "./foundation/reset.scss";
+@import "./foundation/setting.scss";
+
+.pc_header {
+  height: 56px;
+  width: 100%;
+  padding: 6px 16px;
+  background-color: $keycolor;
+  a {
+    text-decoration: none;
+  }
+  h1{
+    height: 100%;
+    a {
+      text-decoration: none;
+      height: 100%;
+      img {
+        height: 36px;
+        vertical-align: middle;
+      }
+    }
+  }
+}

@@ -9,11 +9,26 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    p#notice= notice
-    p#alert= alert
     - if @request_devise == "smartphone"
-      = yield
+      header.header
+        h1
+          a href="/maps/new"
+            img src="/assets/logo.png" alt="Post Road"
+      - if notice
+        p#notice= notice
+      - if alert
+        p#alert= alert
+      .content_wrapper
+        = yield
     - else
-      div style="width: 400px; margin:0 auto;"
+      header.pc_header
+        h1
+          a href="/maps/new"
+            img src="/assets/logo.png" alt="Post Road"
+      - if notice
+        p#notice= notice
+      - if alert
+        p#alert= alert
+      .content_wrapper style="width: 400px; margin:10px auto;"
         = yield
       
