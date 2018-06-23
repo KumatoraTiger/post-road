@@ -11,4 +11,9 @@ html
   body
     p#notice= notice
     p#alert= alert
-    = yield
+    - if @request_devise == "smartphone"
+      = yield
+    - else
+      div style="width: 400px; margin:0 auto;"
+        = yield
+      

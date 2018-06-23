@@ -12,6 +12,10 @@ class MapsController < ApplicationController
 
   end
 
+  def edit
+
+  end
+
   private
 
   def set_twitter_client

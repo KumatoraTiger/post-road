@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'ridgepole'
 gem 'slim-rails'
 gem 'semantic-ui-sass'
+gem "rack-user_agent" #devise判定
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'

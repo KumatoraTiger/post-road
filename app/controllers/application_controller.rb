@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :authenticate_user!
+  before_action :set_request_devise
 
   private
 
@@ -19,4 +21,17 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     new_map_url
   end
+
+  def set_request_devise
+    @request_devise = request.from_smartphone? ? 'smartphone' : 'pc'
+
+    if request.env["HTTP_USER_AGENT"].include?('Googlebot') \
+      && request.env["HTTP_USER_AGENT"].include?('Android')
+      @request_devise = 'smartphone'
+    end
+    if request.env["HTTP_USER_AGENT"].include?('AdsBot-Google-Mobile')
+      @request_devise = 'smartphone'
+    end
+  end
+
 end
