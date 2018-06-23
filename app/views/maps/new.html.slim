@@ -1,0 +1,69 @@
+h1 Map New
+/ div
+/   - @tweets.each do |tweet|
+/     / - binding.pry
+/     = @twitter_client.oembed(@twitter_client.status(tweet.id).id).html.html_safe
+/
+/   button#generate_map type="button" value=\#{@tweets}
+/     div mapを作成する
+/ br
+/ input#generate_map type="hidden" value="\#{@tweets.to_json.html_safe}"
+
+#map
+javascript:
+  var tweets = #{{@tweets.to_json}};
+  function initMap() {
+    var tokyo = {lat: 35.681167, lng: 139.767052};
+    var zoom = 2;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: tokyo,
+      zoom: zoom,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    infoWindow();
+  }
+  /*function initMap() {
+	  console.log("tokyo");
+    var tokyo = {lat: 35.681167, lng: 139.767052};
+    var zoom = 2;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: tokyo,
+      zoom: zoom,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+	  initialMove();
+	  console.log(map);
+	  var tweets = #{@tweets};
+	  console.log(tweets);
+	  var promise = new Promise((resolve, reject) => {
+	     resolve();
+	   });
+    
+	  tweets.forEach(function(tweet){
+		  var lat, lng, oembed = tweet[:geo][:lat], tweet[:geo][:lng], tweet[:oembed_html]
+		  console.log(lat);
+		  console.log(oembed);
+		  promise.then(() => {
+	       promise = new Promise((resolve, reject) => {
+	         setTimeout(() => {
+	           map.panTo(new google.maps.LatLng(lat,lng));
+	           resolve();
+	         }, 1000);
+	       });
+	     }).catch(() => {
+	       console.error('Something wrong!')
+	     })
+	  });
+  }*/
+script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAP_API_KEY']}&callback=initMap"
+css:
+  #map {
+    height: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }

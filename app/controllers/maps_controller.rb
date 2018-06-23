@@ -34,10 +34,14 @@ class MapsController < ApplicationController
   end
 
   def create_geo(tweet)
-    return geo = tweet.geo if tweet.geo
+    if tweet.geo.present?
+      geo_array = tweet.geo.coordinates
+      geo = { lat: geo_array[0], lng: geo_array[1] }
+      return geo
+    end
 
     longtitude, latitude = 0, 0
-    @tweets[0].place.bounding_box.coordinates[0].each do |item|
+    tweet.place.bounding_box.coordinates[0].each do |item|
       longtitude += item[0]
       latitude += item[1]
     end
