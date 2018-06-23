@@ -1,6 +1,15 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
-
+h2 あなただけのMapを作ろう
+br
+p 位置情報つきツイートを利用してGoogle Mapをカスタマイズ
+p あなただけのMapを作ることができます。
+br
 - User.omniauth_providers.each do |provider|
-  = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(:user, provider)
-  br
+  button.ui.primary.button
+    i.fa.fa-twitter
+    = link_to " #{OmniAuth::Utils.camelize(provider)}で登録/ログイン", omniauth_authorize_path(:user, provider), :style => "color: white;"
+br
+br
+br
+p ※ 鍵付きアカウントでは利用できません。
+= link_to "利用規約", href=""
+= link_to " | プライバシーポリシー", href=""

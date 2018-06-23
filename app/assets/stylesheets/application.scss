@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
 @import 'semantic-ui';
@@ -45,6 +46,13 @@ body {
   }
 }
 
-.content_wrapper {
-  background-color: white;
+.body_wrapper {
+  width: 600px;
+  margin: 10px auto;
+  .content_wrapper{
+    margin: 10px 0;
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+  }
 }

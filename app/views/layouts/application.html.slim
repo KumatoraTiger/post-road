@@ -14,21 +14,27 @@ html
         h1
           a href="/maps/new"
             img src="/assets/logo.png" alt="Post Road"
-      - if notice
-        p#notice= notice
-      - if alert
-        p#alert= alert
-      .content_wrapper
-        = yield
+      .body_wrapper
+        - if notice
+          #notice.ui.positive.message
+            p = notice
+        - if alert
+          #alert.ui.warning.message
+            p = alert
+        .content_wrapper
+          = yield
     - else
       header.pc_header
         h1
           a href="/maps/new"
             img src="/assets/logo.png" alt="Post Road"
-      - if notice
-        p#notice= notice
-      - if alert
-        p#alert= alert
-      .content_wrapper style="width: 400px; margin:10px auto;"
-        = yield
+      .body_wrapper
+        - if notice
+          #notice.ui.positive.message
+            p = notice
+        - if alert
+          #alert.ui.warning.message
+            p = alert
+        .content_wrapper
+          = yield
       
