@@ -10,22 +10,33 @@ class MapsController < ApplicationController
   end
 
   def create
-    tweets = @twitter_client.user_timeline(count:1000)
-    matched_tweets = []
-    tweets.each do |tweet|
-      matched_tweets.push(tweet) if params["tweet"].keys.include?(tweet.id.to_s)
-    end
-    @tweets = matched_tweets
-
-    map = Map.create
+    tweet_ids = params["tweet"].keys.to_json
+    map = Map.create(tweet_ids:tweet_ids)
     redirect_to edit_map_path(map)
   end
 
   def edit
+    @map = Map.find(params["id"])
+    tweet_ids = JSON.parse(@map.tweet_ids)
+
+    tweets = @twitter_client.user_timeline(count:1000)
+    geo_tweets = only_geo_tweets(tweets)
+    matched_tweets = []
+    geo_tweets.each do |tweet|
+      matched_tweets.push(tweet) if tweet_ids.include?(tweet.id.to_s)
+    end
+    @tweets = to_hash(matched_tweets)
+  end
+
+  def update
 
   end
 
   private
+
+  def map_params
+    params.require(:maps).permit(:name)
+  end
 
   def set_twitter_client
     @twitter_client ||= twitter_client

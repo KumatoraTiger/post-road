@@ -51,8 +51,8 @@ function infoWindow(map){
       title: 'test'
     })
     infowindow.open(map, marker);
-    console.log(tweet["geo"]);
-    console.log(tweet["oembed_html"]);
+    // console.log(tweet["geo"]);
+    // console.log(tweet["oembed_html"]);
   });
 }
 
