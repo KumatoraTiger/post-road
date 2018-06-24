@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'privacypolicy', to: 'static#privacypolicy'
+  get 'term', to: 'static#term'
+
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks'}
   root 'home#index'
 
