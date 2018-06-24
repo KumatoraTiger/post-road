@@ -1,11 +1,14 @@
 h2#test ツイートを選択
 = form_tag('/maps', :method=>'post')
   .tweets_list_box
-    - @tweets.each_with_index do |tweet, idx|
-      .tweet_list_item
-        label
-          input type="checkbox" name="tweet[#{tweet[:id]}]"
-          = tweet[:oembed_html].html_safe
-  p style="text-align: right;" ※位置情報付きツイートのみが表示されます。
+    - if @tweets.blank?
+      p.no_tweet 位置情報付きツイートが存在しないか、一般公開されているツイートがありません。
+    - else 
+      - @tweets.each_with_index do |tweet, idx|
+        .tweet_list_item
+          label
+            input type="checkbox" name="tweet[#{tweet[:id]}]"
+            = tweet[:oembed_html].html_safe
+  p style="text-align: right; color: #aaa;" ※位置情報付きツイートのみが表示されます。
   input.ui.blue.button type="submit" value="Mapを作成"
 br

@@ -52,7 +52,9 @@ class MapsController < ApplicationController
   def to_hash(tweets)
     array = []
     tweets.each do |tweet|
-      array.push({id: tweet.id, geo: create_geo(tweet), oembed_html: get_oembed_html(tweet)})
+      if oembed_html = get_oembed_html(tweet)
+        array.push({id: tweet.id, geo: create_geo(tweet), oembed_html: oembed_html})
+      end
     end
     return array
   end
@@ -76,7 +78,10 @@ class MapsController < ApplicationController
 
   def get_oembed_html(tweet)
     id = @twitter_client.status(tweet.id).id
-    # binding.pry
-    return @twitter_client.oembed(id, :hide_media => true, :align => "center").html
+    begin
+      return @twitter_client.oembed(id, :hide_media => true, :align => "center").html
+    rescue => e
+      return nil
+    end
   end
 end
