@@ -47,12 +47,13 @@ body {
 }
 
 .body_wrapper {
-  width: 600px;
+  width: 100%;
   margin: 10px auto;
-  .content_wrapper{
-    margin: 10px 0;
-    padding: 10px;
-    background-color: white;
-    text-align: center;
-  }
+}
+
+.content_wrapper{
+  margin: 10px 0;
+  padding: 10px;
+  background-color: white;
+  text-align: center;
 }

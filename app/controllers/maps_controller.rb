@@ -10,7 +10,7 @@ class MapsController < ApplicationController
   end
 
   def create
-
+    # binding.pry
   end
 
   def edit
@@ -57,6 +57,7 @@ class MapsController < ApplicationController
 
   def get_oembed_html(tweet)
     id = @twitter_client.status(tweet.id).id
-    return @twitter_client.oembed(id).html
+    # binding.pry
+    return @twitter_client.oembed(id, :hide_media => true, :align => "center").html
   end
 end

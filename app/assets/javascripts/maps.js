@@ -23,6 +23,14 @@
 //     console.error('Something wrong!')
 //   })
 // }
+$(function(){
+  $('.tweet_list_item').on('click', function(){
+    if ($(this).find('input').prop("checked")) {
+      $(this).toggleClass("tweet_checked");
+    }
+  });
+});
+
 
 function infoWindow(map){
   var map = new google.maps.Map(document.getElementById('map'), {

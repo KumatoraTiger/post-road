@@ -1,3 +1,34 @@
 // Place all the styles related to the Maps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "./foundation/setting.scss";
+
+.tweets_list_box {
+  margin: 20px 0;
+  width: 100%;
+  border: 1px #c0c0c0 solid;
+  background-color: #fafafa;
+}
+
+.tweet_list_item {
+  label {
+    display: block;
+    // position: relative;
+    input {
+      // display: inline;
+      // position: absolute;
+      // top: 82px;
+      // left: 18px;
+      display: none;
+    }
+    .twitter-tweet {
+      // display: inline-block !important;
+      pointer-events: none;
+    }
+  }
+}
+
+.tweet_checked {
+  border: 3px $keycolor solid;
+}
