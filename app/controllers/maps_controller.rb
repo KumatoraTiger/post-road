@@ -3,14 +3,22 @@ class MapsController < ApplicationController
   before_action :set_twitter_client
 
   def new
-    tweets = twitter_client.user_timeline(count: 1000)
+    tweets = @twitter_client.user_timeline(count: 1000)
     geo_tweets = only_geo_tweets(tweets)
 
     @tweets = to_hash(geo_tweets)
   end
 
   def create
-    # binding.pry
+    tweets = @twitter_client.user_timeline(count:1000)
+    matched_tweets = []
+    tweets.each do |tweet|
+      matched_tweets.push(tweet) if params["tweet"].keys.include?(tweet.id.to_s)
+    end
+    @tweets = matched_tweets
+
+    map = Map.create
+    redirect_to edit_map_path(map)
   end
 
   def edit
@@ -33,7 +41,7 @@ class MapsController < ApplicationController
   def to_hash(tweets)
     array = []
     tweets.each do |tweet|
-      array.push({geo: create_geo(tweet), oembed_html: get_oembed_html(tweet)})
+      array.push({id: tweet.id, geo: create_geo(tweet), oembed_html: get_oembed_html(tweet)})
     end
     return array
   end
