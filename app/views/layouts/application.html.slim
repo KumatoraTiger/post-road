@@ -13,7 +13,7 @@ html
       header.header
         h1
           a href="/maps/new"
-            img src="/assets/logo.png" alt="Post Road"
+            img src="#{asset_path 'logo.png'}" alt="Post Road"
       .body_wrapper
         - if notice
           #notice.ui.positive.message
@@ -27,7 +27,7 @@ html
       header.pc_header
         h1
           a href="/maps/new"
-            img src="/assets/logo.png" alt="Post Road"
+            img src="#{asset_path 'logo.png'}" alt="Post Road"
       .pc_body_wrapper
         - if notice
           #notice.ui.positive.message
