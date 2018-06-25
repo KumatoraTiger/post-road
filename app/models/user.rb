@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:twitter]
 
+  has_many :maps
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -25,6 +26,6 @@ class User < ApplicationRecord
   private
 
   def self.dummy_email(auth)
-    "#{auth.uid}-{auth.provider}@example.com"
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end

@@ -14,16 +14,10 @@
 .tweet_list_item {
   label {
     display: block;
-    // position: relative;
     input {
-      // display: inline;
-      // position: absolute;
-      // top: 82px;
-      // left: 18px;
       display: none;
     }
     .twitter-tweet {
-      // display: inline-block !important;
       pointer-events: none;
     }
   }

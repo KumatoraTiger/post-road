@@ -10,8 +10,9 @@ class MapsController < ApplicationController
   end
 
   def create
+    redirect_to new_map_url, flash:{alert: "最低一つ以上の選択が必要です。"} and return unless params["tweet"]
     tweet_ids = params["tweet"].keys.to_json
-    map = Map.create(tweet_ids:tweet_ids)
+    map = Map.create(tweet_ids:tweet_ids, user_id: current_user.id)
     redirect_to edit_map_path(map)
   end
 
@@ -39,7 +40,7 @@ class MapsController < ApplicationController
   private
 
   def map_params
-    params.require(:map).permit(:name)
+    params.require(:map).permit(:name, :user_id)
   end
 
   def set_twitter_client
