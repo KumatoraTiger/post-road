@@ -37,4 +37,8 @@ html
             p = alert
         .content_wrapper
           = yield
-      
+    footer
+      div
+        = link_to "利用規約", href=term_path
+        span  | 
+        = link_to "プライバシーポリシー", href=privacypolicy_path
