@@ -1,5 +1,6 @@
 class MapsController < ApplicationController
   before_action :authenticate_user!
+  before_action :has_map?, :only => [:edit, :update]
   before_action :set_twitter_client
 
   def new
@@ -45,6 +46,11 @@ class MapsController < ApplicationController
 
   def set_twitter_client
     @twitter_client ||= twitter_client
+  end
+
+  def has_map?
+    map = Map.find(params["id"])
+    redirect_to root_url, flash: {alert: "ログインしてください。"} if map.user_id != current_user.id
   end
 
   def only_geo_tweets(tweets)
