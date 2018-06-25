@@ -1,6 +1,6 @@
 = form_for(@map, :url => {:action => 'update'}, :html => {:class => 'ui form'}) do |f|
   .field
-    = f.text_field(:name, :placeholder=>"Mapの名前", :required=>true)
+    = f.text_field(:name, :placeholder=>"Mapの名前")
   
   #map
   javascript:
@@ -63,5 +63,5 @@
       padding: 0;
     }
   br
-  input.ui.blue.button type="submit" name="save" value="保存"
-  input.ui.button type="submit" name="back" value="戻る"
+  input.ui.blue.button type="submit" name="update" value="保存"
+  input.ui.button type="submit" name="update" value="戻る"

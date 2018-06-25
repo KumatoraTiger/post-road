@@ -29,13 +29,17 @@ class MapsController < ApplicationController
   end
 
   def update
-
+    if params["update"] == "保存"
+      map = Map.find(params["id"])
+      map.update_attributes(map_params)
+    end
+    redirect_to new_map_url
   end
 
   private
 
   def map_params
-    params.require(:maps).permit(:name)
+    params.require(:map).permit(:name)
   end
 
   def set_twitter_client
